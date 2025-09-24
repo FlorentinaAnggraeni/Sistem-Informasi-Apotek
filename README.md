@@ -4,7 +4,7 @@
 
 ### 1. Clone repo dari GitHub
 ```bash
-git clone https://github.com/username/repo.git
+git clone https://github.com/FlorentinaAnggraeni/Sistem-Informasi-Apotek.git
 cd repo
 ```
 
