@@ -5,17 +5,14 @@
 ### 1. Clone repo dari GitHub
 ```bash
 git clone https://github.com/FlorentinaAnggraeni/Sistem-Informasi-Apotek.git
-cd repo
 ```
 
 ### 2. Install dependencies
 ```bash
 composer install
-npm install && npm run dev   # kalau pakai vite/laravel mix
 ```
 
 ### 3. Copy file `.env`
-Minta file `.env` dari leader (⚠️ **jangan diupload ke GitHub**).
 
 ```bash
 cp .env.example .env
@@ -39,12 +36,12 @@ php artisan migrate
 
 ### a. Update repo dulu sebelum ngoding
 ```bash
-git pull origin main
+git pull origin main (pastiin pulll duluuuuu sebelummm bikin project)
 ```
 
 ### b. Bikin branch baru untuk fitur/bugfix
 ```bash
-git checkout -b fitur-auth
+git checkout -b fitur-auth (bikin branch baruu buat masing masing fitur jangan di branch mainnn!!!!!!!)
 ```
 
 ### c. Coding → commit → push ke branch
