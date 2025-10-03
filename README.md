@@ -30,6 +30,11 @@ php artisan key:generate
 php artisan migrate
 ```
 
+### 6. Seeder Database (nambahin isi data)
+```bash
+php artisan db:seed
+```
+
 ---
 
 ## 🔹 Cara Kerja Sehari-hari (Kolaborasi)
