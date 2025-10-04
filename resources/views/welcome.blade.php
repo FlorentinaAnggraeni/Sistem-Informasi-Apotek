@@ -10,32 +10,24 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <style>
-    html { scroll-behavior: smooth; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    /* Bagian gambar landing */
     .hero-section {
-      background: linear-gradient(to bottom right, #00c6ff, #00a0b9);
-      color: #fff;
-      padding: 120px 0 80px 0;
-      position: relative;
-      overflow: hidden;
+      background: url('/images/landing.png') no-repeat center center/cover;
+      height: 100vh;           /* Full tinggi layar */
+      width: 100%;
     }
-    .hero-section .badge-open {
-      background: #fff;
-      color: #0d6efd;
-      font-weight: 600;
-      padding: .5rem 1rem;
-      border-radius: 50rem;
-      display: inline-block;
-      font-size: 1.1rem;
-    }
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-      transition: all .3s ease-in-out;
-    }
+
     footer {
       background: #212529;
       color: #ccc;
     }
+
     footer h5 {
       color: #fff;
     }
@@ -43,7 +35,7 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">Apotek <span class="text-warning">Cinta Farma</span></a>
@@ -57,54 +49,8 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero-section text-center">
-  <div class="container">
-    <p class="text-uppercase fw-medium">Kesehatan Anda, Prioritas Kami!</p>
-    <h1 class="display-4 fw-bold mb-3">Apotek <span class="text-warning">Cinta Farma</span></h1>
-    <div class="badge-open mb-2">BUKA 14,5 JAM</div>
-    <p class="mb-4 fs-5">Senin - Minggu, 07.00 - 21.30</p>
-    <a href="/register" class="btn btn-warning btn-lg text-dark fw-semibold shadow">Daftar Sekarang</a>
-  </div>
-</section>
-
-<!-- LAYANAN (Hanya 2 Layanan) -->
-<section class="py-5 bg-light" id="layanan">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold text-info">Layanan Kami</h2>
-      <p class="text-muted">2 Layanan utama untuk kebutuhan kesehatan Anda</p>
-    </div>
-    <div class="row g-4 justify-content-center">
-
-      <!-- Produk Kesehatan -->
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="bg-white text-center p-4 rounded service-card h-100">
-          <i class="bi bi-heart-pulse text-info fs-1"></i>
-          <h6 class="mt-3">Produk Kesehatan</h6>
-        </div>
-      </div>
-
-      <!-- Pengantaran -->
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="bg-white text-center p-4 rounded service-card h-100">
-          <i class="bi bi-truck text-info fs-1"></i>
-          <h6 class="mt-3">Pengantaran</h6>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="py-5 text-center bg-info text-white">
-  <div class="container">
-    <h3 class="fw-bold">Bergabung dengan Kami</h3>
-    <p class="fs-5">Daftar sekarang untuk kemudahan akses layanan Apotek Cinta Farma.</p>
-    <a href="/register" class="btn btn-warning btn-lg text-dark fw-semibold shadow">Daftar Sekarang</a>
-  </div>
-</section>
+<!-- HERO (Gambar Fullscreen) -->
+<section class="hero-section"></section>
 
 <!-- FOOTER -->
 <footer class="py-5">
