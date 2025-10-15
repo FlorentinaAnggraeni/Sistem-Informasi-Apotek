@@ -9,6 +9,12 @@
     </a>
 </li>
 <li>
+    <a href="{{ route('pemilik.stok-obat') }}">
+        <i class="fas fa-boxes"></i>
+        <span>Stok Obat</span>
+    </a>
+</li>
+<li>
     <a href="{{ route('pemilik.laporan') }}">
         <i class="fas fa-chart-line"></i>
         <span>Laporan Keuangan</span>
@@ -78,6 +84,41 @@
             </div>
             <div class="number">0</div>
             <div class="label" style="color: rgba(255,255,255,0.9);">Total Produk</div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card-dashboard">
+            <h4 class="fw-bold mb-4"><i class="fas fa-bolt text-warning"></i> Aksi Cepat</h4>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ route('pemilik.stok-obat') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 100%); color: white;">
+                        <i class="fas fa-warehouse d-block mb-2" style="font-size: 2rem;"></i>
+                        Lihat Stok Obat
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ route('pemilik.laporan') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <i class="fas fa-file-invoice-dollar d-block mb-2" style="font-size: 2rem;"></i>
+                        Laporan Keuangan
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ route('pemilik.kelola-user') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                        <i class="fas fa-users-cog d-block mb-2" style="font-size: 2rem;"></i>
+                        Kelola User
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ route('pemilik.pengaturan') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">
+                        <i class="fas fa-cog d-block mb-2" style="font-size: 2rem;"></i>
+                        Pengaturan
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -30,6 +30,12 @@ class DashboardController extends Controller
         return view('pelanggan.produk');
     }
 
+    public function cekStok()
+    {
+        $obat = \App\Models\Obat::all();
+        return view('pelanggan.cek-stok', compact('obat'));
+    }
+
     public function keranjang()
     {
         return view('pelanggan.keranjang');
@@ -46,6 +52,12 @@ class DashboardController extends Controller
     }
 
     // === PEMILIK ROUTES ===
+    public function stokObat()
+    {
+        $obat = \App\Models\Obat::all();
+        return view('pemilik.stok-obat', compact('obat'));
+    }
+
     public function laporan()
     {
         return view('pemilik.laporan');
@@ -62,9 +74,10 @@ class DashboardController extends Controller
     }
 
     // === APOTEKER ROUTES ===
-    public function kelolaObat()
+    public function apotekerKelolaObat()
     {
-        return view('apoteker.kelola-obat');
+        $obat = \App\Models\Obat::all();
+        return view('apoteker.kelola-obat', compact('obat'));
     }
 
     public function stok()
@@ -78,6 +91,12 @@ class DashboardController extends Controller
     }
 
     // === KARYAWAN ROUTES ===
+    public function karyawanKelolaObat()
+    {
+        $obat = \App\Models\Obat::all();
+        return view('karyawan.kelola-obat', compact('obat'));
+    }
+
     public function transaksi()
     {
         return view('karyawan.transaksi');

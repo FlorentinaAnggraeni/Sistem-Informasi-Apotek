@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     // Dashboard Pelanggan
     Route::middleware('role:pelanggan')->prefix('pelanggan')->name('pelanggan.')->group(function () {
         Route::get('/produk', [DashboardController::class, 'produkPelanggan'])->name('produk');
+        Route::get('/cek-stok', [DashboardController::class, 'cekStok'])->name('cek-stok');
         Route::get('/keranjang', [DashboardController::class, 'keranjang'])->name('keranjang');
         Route::get('/pesanan', [DashboardController::class, 'pesanan'])->name('pesanan');
         Route::get('/profil', [DashboardController::class, 'profil'])->name('profil');
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard Pemilik
     Route::middleware('role:pemilik')->prefix('pemilik')->name('pemilik.')->group(function () {
+        Route::get('/stok-obat', [DashboardController::class, 'stokObat'])->name('stok-obat');
         Route::get('/laporan', [DashboardController::class, 'laporan'])->name('laporan');
         Route::get('/kelola-user', [DashboardController::class, 'kelolaUser'])->name('kelola-user');
         Route::get('/pengaturan', [DashboardController::class, 'pengaturan'])->name('pengaturan');
@@ -52,13 +54,14 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard Apoteker
     Route::middleware('role:apoteker')->prefix('apoteker')->name('apoteker.')->group(function () {
-        Route::get('/kelola-obat', [DashboardController::class, 'kelolaObat'])->name('kelola-obat');
+        Route::get('/kelola-obat', [DashboardController::class, 'apotekerKelolaObat'])->name('kelola-obat');
         Route::get('/stok', [DashboardController::class, 'stok'])->name('stok');
         Route::get('/resep', [DashboardController::class, 'resep'])->name('resep');
     });
 
     // Dashboard Karyawan
     Route::middleware('role:karyawan')->prefix('karyawan')->name('karyawan.')->group(function () {
+        Route::get('/kelola-obat', [DashboardController::class, 'karyawanKelolaObat'])->name('kelola-obat');
         Route::get('/transaksi', [DashboardController::class, 'transaksi'])->name('transaksi');
         Route::get('/pesanan-masuk', [DashboardController::class, 'pesananMasuk'])->name('pesanan-masuk');
     });

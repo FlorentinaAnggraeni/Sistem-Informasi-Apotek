@@ -101,6 +101,12 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ route('pelanggan.cek-stok') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 100%); color: white;">
+                        <i class="fas fa-boxes d-block mb-2" style="font-size: 2rem;"></i>
+                        Cek Stok Obat
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3">
                     <a href="{{ route('pelanggan.keranjang') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
                         <i class="fas fa-shopping-cart d-block mb-2" style="font-size: 2rem;"></i>
                         Lihat Keranjang

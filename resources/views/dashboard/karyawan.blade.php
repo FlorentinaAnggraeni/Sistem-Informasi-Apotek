@@ -9,6 +9,12 @@
     </a>
 </li>
 <li>
+    <a href="{{ route('karyawan.kelola-obat') }}">
+        <i class="fas fa-pills"></i>
+        <span>Kelola Obat</span>
+    </a>
+</li>
+<li>
     <a href="{{ route('karyawan.transaksi') }}">
         <i class="fas fa-cash-register"></i>
         <span>Transaksi</span>
@@ -71,13 +77,19 @@
         <div class="card-dashboard">
             <h4 class="fw-bold mb-4"><i class="fas fa-bolt text-warning"></i> Aksi Cepat</h4>
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
+                    <a href="{{ route('karyawan.kelola-obat') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 100%); color: white;">
+                        <i class="fas fa-capsules d-block mb-2" style="font-size: 2rem;"></i>
+                        Kelola Obat
+                    </a>
+                </div>
+                <div class="col-md-4 mb-3">
                     <a href="{{ route('karyawan.transaksi') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                         <i class="fas fa-cash-register d-block mb-2" style="font-size: 2rem;"></i>
                         Buat Transaksi Baru
                     </a>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                     <a href="{{ route('karyawan.pesanan-masuk') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
                         <i class="fas fa-inbox d-block mb-2" style="font-size: 2rem;"></i>
                         Lihat Pesanan Masuk

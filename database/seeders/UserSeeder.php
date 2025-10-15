@@ -47,6 +47,18 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+             [
+                'name'       => 'Siti Aminah',
+                'username'   => 'siti.apt',
+                'email'      => 'apoteker@example.com',
+                'password'   => Hash::make('password123'),
+                'alamat'     => 'Yogyakarta',
+                'no_hp'      => '0857123456789',
+                'role'       => 'apoteker',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
+        
