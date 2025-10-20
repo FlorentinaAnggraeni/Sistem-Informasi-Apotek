@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     // Dashboard utama (redirect ke dashboard sesuai role)
     public function index()
-    {
-        $user = auth()->user();
-        
-        switch ($user->role) {
-            case 'pemilik':
-                return view('dashboard.pemilik');
-            case 'apoteker':
-                return view('dashboard.apoteker');
-            case 'karyawan':
-                return view('dashboard.karyawan');
-            case 'pelanggan':
-            default:
-                return view('dashboard.pelanggan');
-        }
+{
+    $role = Auth::user()->role;
+
+    switch ($role) {
+        case 'pelanggan':
+            return view('dashboard.pelanggan');
+        case 'karyawan':
+        case 'apoteker':
+            return view('dashboard.apoteker'); // gunakan 1 view gabungan
+        case 'pemilik':
+            return view('dashboard.pemilik');
+        default:
+            abort(403);
     }
+}
+
 
     // === PELANGGAN ROUTES ===
     public function produkPelanggan()
@@ -35,12 +37,18 @@ class DashboardController extends Controller
         $obat = \App\Models\Obat::all();
         return view('pelanggan.cek-stok', compact('obat'));
     }
+public function pesanObat()
+{
+    $obat = \App\Models\Obat::all();
+    return view('pelanggan.pesan-obat', compact('obat'));
+}
 
-    public function keranjang()
-    {
-        return view('pelanggan.keranjang');
-    }
-
+public function riwayat()
+{
+    // $pesanan = Pesanan::where('user_id', auth()->id())->get();
+    return view('pelanggan.riwayat');
+}
+   
     public function pesanan()
     {
         return view('pelanggan.pesanan');
@@ -71,23 +79,6 @@ class DashboardController extends Controller
     public function pengaturan()
     {
         return view('pemilik.pengaturan');
-    }
-
-    // === APOTEKER ROUTES ===
-    public function apotekerKelolaObat()
-    {
-        $obat = \App\Models\Obat::all();
-        return view('apoteker.kelola-obat', compact('obat'));
-    }
-
-    public function stok()
-    {
-        return view('apoteker.stok');
-    }
-
-    public function resep()
-    {
-        return view('apoteker.resep');
     }
 
     // === KARYAWAN ROUTES ===

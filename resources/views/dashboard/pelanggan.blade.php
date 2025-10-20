@@ -1,177 +1,403 @@
-@extends('layouts.dashboard')
-@section('title', 'Dashboard Pelanggan')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pelanggan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-@section('sidebar-menu')
-<li>
-    <a href="{{ route('dashboard') }}" class="active">
-        <i class="fas fa-home"></i>
-        <span>Dashboard</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('pelanggan.produk') }}">
-        <i class="fas fa-capsules"></i>
-        <span>Produk Obat</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('pelanggan.keranjang') }}">
-        <i class="fas fa-shopping-cart"></i>
-        <span>Keranjang</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('pelanggan.pesanan') }}">
-        <i class="fas fa-box"></i>
-        <span>Pesanan Saya</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('pelanggan.profil') }}">
-        <i class="fas fa-user"></i>
-        <span>Profil Saya</span>
-    </a>
-</li>
-@endsection
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
 
-@section('content')
-<div class="row mb-4">
-    <div class="col-12">
-        <h2 class="fw-bold">Dashboard Pelanggan</h2>
-        <p class="text-muted">Selamat berbelanja di Apotek kami</p>
-    </div>
-</div>
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, #00d4ff 0%, #0099cc 100%);
+            padding: 25px 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<div class="row">
-    <!-- Stat Card 1 -->
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-            <div class="icon">
-                <i class="fas fa-capsules"></i>
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .logo-section i {
+            font-size: 2.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-info {
+            color: white;
+            text-align: right;
+        }
+
+        .user-info .name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .user-info .role {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            background: linear-gradient(135deg, #ffd89b 0%, #ffbe76 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .doctor-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .doctor-icon i {
+            font-size: 3.5rem;
+            color: #00d4ff;
+        }
+
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        /* User Info Card */
+        .user-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .user-avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .user-details h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .user-details p {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 3px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .menu-card.purple {
+            border-color: #667eea;
+        }
+
+        .menu-card.purple:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .menu-card.pink {
+            border-color: #f093fb;
+        }
+
+        .menu-card.pink:hover {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .menu-card.blue {
+            border-color: #4facfe;
+        }
+
+        .menu-card.blue:hover {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .menu-card.orange {
+            border-color: #ffd89b;
+        }
+
+        .menu-card.orange:hover {
+            background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 100%);
+        }
+
+        .menu-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-card.purple .menu-icon-wrapper {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .menu-card.pink .menu-icon-wrapper {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .menu-card.blue .menu-icon-wrapper {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .menu-card.orange .menu-icon-wrapper {
+            background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 100%);
+        }
+
+        .menu-icon-wrapper i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .menu-card:hover .menu-icon-wrapper {
+            background: white;
+        }
+
+        .menu-card.purple:hover .menu-icon-wrapper i {
+            color: #667eea;
+        }
+
+        .menu-card.pink:hover .menu-icon-wrapper i {
+            color: #f093fb;
+        }
+
+        .menu-card.blue:hover .menu-icon-wrapper i {
+            color: #4facfe;
+        }
+
+        .menu-card.orange:hover .menu-icon-wrapper i {
+            color: #ff9a56;
+        }
+
+        .menu-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            transition: color 0.3s ease;
+        }
+
+        .menu-card:hover .menu-title {
+            color: white;
+        }
+
+        /* Logout Button */
+        .logout-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border: none;
+            border-radius: 15px;
+            padding: 18px 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .user-info {
+                text-align: center;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <i class="fas fa-pills"></i>
+            <div class="logo-text">
+                APOTEK<br>PELANGGAN
             </div>
-            <div class="number">150+</div>
-            <div class="label" style="color: rgba(255,255,255,0.9);">Produk Tersedia</div>
+        </div>
+        <div class="header-right">
+            <div class="user-info">
+                <div class="name">{{ auth()->user()->name }}</div>
+                <div class="role">Pelanggan</div>
+            </div>
         </div>
     </div>
 
-    <!-- Stat Card 2 -->
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-            <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <div class="doctor-icon">
+                <i class="fas fa-user-md"></i>
             </div>
-            <div class="number">0</div>
-            <div class="label" style="color: rgba(255,255,255,0.9);">Item di Keranjang</div>
+            <h1>Selamat Datang!!</h1>
+            <p>Ayo mulai memesan!</p>
         </div>
-    </div>
 
-    <!-- Stat Card 3 -->
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
-            <div class="icon">
-                <i class="fas fa-box"></i>
+        <!-- User Info Card -->
+        <div class="user-card">
+            <div class="user-avatar">
+                <i class="fas fa-user"></i>
             </div>
-            <div class="number">0</div>
-            <div class="label" style="color: rgba(255,255,255,0.9);">Pesanan Aktif</div>
-        </div>
-    </div>
-
-    <!-- Stat Card 4 -->
-    <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">
-            <div class="icon">
-                <i class="fas fa-check-circle"></i>
+            <div class="user-details">
+                <h2>{{ auth()->user()->name }}</h2>
+                <p><i class="fas fa-calendar"></i> {{ \Carbon\Carbon::parse(auth()->user()->created_at)->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</p>
             </div>
-            <div class="number">0</div>
-            <div class="label" style="color: rgba(255,255,255,0.9);">Pesanan Selesai</div>
         </div>
-    </div>
-</div>
 
-<!-- Quick Actions -->
-<div class="row">
-    <div class="col-12 mb-4">
-        <div class="card-dashboard">
-            <h4 class="fw-bold mb-4"><i class="fas fa-bolt text-warning"></i> Aksi Cepat</h4>
-            <div class="row">
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <a href="{{ route('pelanggan.produk') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                        <i class="fas fa-shopping-bag d-block mb-2" style="font-size: 2rem;"></i>
-                        Belanja Sekarang
-                    </a>
+        <!-- Menu Grid -->
+        <div class="menu-grid">
+            <a href="{{ route('pelanggan.cek-stok') }}" class="menu-card purple">
+                <div class="menu-icon-wrapper">
+                    <i class="fas fa-pills"></i>
                 </div>
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <a href="{{ route('pelanggan.cek-stok') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #ffd89b 0%, #ff9a56 100%); color: white;">
-                        <i class="fas fa-boxes d-block mb-2" style="font-size: 2rem;"></i>
-                        Cek Stok Obat
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <a href="{{ route('pelanggan.keranjang') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-                        <i class="fas fa-shopping-cart d-block mb-2" style="font-size: 2rem;"></i>
-                        Lihat Keranjang
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <a href="{{ route('pelanggan.pesanan') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
-                        <i class="fas fa-box d-block mb-2" style="font-size: 2rem;"></i>
-                        Cek Pesanan
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 mb-3">
-                    <a href="{{ route('pelanggan.profil') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">
-                        <i class="fas fa-user-circle d-block mb-2" style="font-size: 2rem;"></i>
-                        Edit Profil
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="menu-title">Melihat Stok Obat</div>
+            </a>
 
-<!-- Informasi Pelanggan -->
-<div class="row">
-    <div class="col-md-6 mb-4">
-        <div class="card-dashboard">
-            <h5 class="fw-bold mb-3"><i class="fas fa-user-circle text-primary"></i> Informasi Akun</h5>
-            <table class="table table-borderless">
-                <tr>
-                    <td class="fw-semibold" width="120">Nama</td>
-                    <td>: {{ auth()->user()->name }}</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">Username</td>
-                    <td>: {{ auth()->user()->username }}</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">Email</td>
-                    <td>: {{ auth()->user()->email }}</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">No. HP</td>
-                    <td>: {{ auth()->user()->no_hp }}</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">Alamat</td>
-                    <td>: {{ auth()->user()->alamat }}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
+            <a href="{{ route('pelanggan.produk') }}" class="menu-card pink">
+                <div class="menu-icon-wrapper">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                </div>
+                <div class="menu-title">Melakukan Pemesanan Obat</div>
+            </a>
 
-    <div class="col-md-6 mb-4">
-        <div class="card-dashboard">
-            <h5 class="fw-bold mb-3"><i class="fas fa-info-circle text-info"></i> Informasi Penting</h5>
-            <div class="alert alert-info mb-2">
-                <i class="fas fa-shipping-fast"></i> <strong>Pengiriman Gratis</strong> untuk pembelian di atas Rp 100.000
-            </div>
-            <div class="alert alert-success mb-2">
-                <i class="fas fa-certificate"></i> <strong>Produk Original</strong> dan terjamin kualitasnya
-            </div>
-            <div class="alert alert-warning mb-0">
-                <i class="fas fa-clock"></i> <strong>Jam Operasional:</strong> Senin - Sabtu, 08:00 - 20:00 WIB
-            </div>
+            <a href="{{ route('pelanggan.pesanan') }}" class="menu-card blue">
+                <div class="menu-icon-wrapper">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="menu-title">Melihat Status Pesanan</div>
+            </a>
+
+            <a href="{{ route('pelanggan.pembayaran') }}" class="menu-card orange">
+                <div class="menu-icon-wrapper">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="menu-title">Melakukan Pembayaran</div>
+            </a>
+        </div>
+
+        <!-- Logout Section -->
+        <div class="logout-section">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> LOGOUT
+                </button>
+            </form>
         </div>
     </div>
-</div>
-@endsection
+</body>
+</html>
