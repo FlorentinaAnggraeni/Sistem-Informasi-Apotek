@@ -1,0 +1,173 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Obat;
+use Carbon\Carbon;
+
+class ObatSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $obatData = [
+            [
+                'kode_obat' => 'OBT202501050001',
+                'nama_obat' => 'Paracetamol 500mg',
+                'kategori' => 'Tablet',
+                'jenis' => 'Obat Bebas',
+                'satuan' => 'Tablet',
+                'harga_beli' => 500,
+                'harga_jual' => 750,
+                'stok' => 500,
+                'stok_minimum' => 100,
+                'tanggal_kadaluarsa' => Carbon::now()->addYears(2),
+                'supplier' => 'PT Kimia Farma',
+                'deskripsi' => 'Obat penurun demam dan pereda nyeri. Dosis: 3x1 tablet sehari.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050002',
+                'nama_obat' => 'Amoxicillin 500mg',
+                'kategori' => 'Kapsul',
+                'jenis' => 'Obat Keras',
+                'satuan' => 'Kapsul',
+                'harga_beli' => 1500,
+                'harga_jual' => 2500,
+                'stok' => 300,
+                'stok_minimum' => 50,
+                'tanggal_kadaluarsa' => Carbon::now()->addYears(1)->addMonths(6),
+                'supplier' => 'PT Kalbe Farma',
+                'deskripsi' => 'Antibiotik untuk infeksi bakteri. Harus dengan resep dokter.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050003',
+                'nama_obat' => 'OBH Combi Sirup 100ml',
+                'kategori' => 'Sirup',
+                'jenis' => 'Obat Bebas Terbatas',
+                'satuan' => 'Botol',
+                'harga_beli' => 12000,
+                'harga_jual' => 18000,
+                'stok' => 150,
+                'stok_minimum' => 30,
+                'tanggal_kadaluarsa' => Carbon::now()->addYear(),
+                'supplier' => 'PT Sido Muncul',
+                'deskripsi' => 'Obat batuk berdahak. Dosis: 3x1 sendok makan sehari.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050004',
+                'nama_obat' => 'Betadine Salep 10gr',
+                'kategori' => 'Salep',
+                'jenis' => 'Obat Bebas',
+                'satuan' => 'Tube',
+                'harga_beli' => 8000,
+                'harga_jual' => 12000,
+                'stok' => 200,
+                'stok_minimum' => 40,
+                'tanggal_kadaluarsa' => Carbon::now()->addYears(2),
+                'supplier' => 'PT Mahakam Beta Farma',
+                'deskripsi' => 'Antiseptik untuk luka luar.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050005',
+                'nama_obat' => 'Vitamin C 1000mg',
+                'kategori' => 'Tablet',
+                'jenis' => 'Suplemen',
+                'satuan' => 'Tablet',
+                'harga_beli' => 300,
+                'harga_jual' => 500,
+                'stok' => 1000,
+                'stok_minimum' => 200,
+                'tanggal_kadaluarsa' => Carbon::now()->addYears(3),
+                'supplier' => 'PT Konimex',
+                'deskripsi' => 'Suplemen vitamin C untuk daya tahan tubuh.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050006',
+                'nama_obat' => 'Neurobion 5000',
+                'kategori' => 'Tablet',
+                'jenis' => 'Suplemen',
+                'satuan' => 'Tablet',
+                'harga_beli' => 1200,
+                'harga_jual' => 2000,
+                'stok' => 400,
+                'stok_minimum' => 80,
+                'tanggal_kadaluarsa' => Carbon::now()->addYears(2),
+                'supplier' => 'PT Merck',
+                'deskripsi' => 'Vitamin neurotropik untuk kesehatan saraf.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050007',
+                'nama_obat' => 'Antangin Sirup 15ml',
+                'kategori' => 'Sirup',
+                'jenis' => 'Obat Herbal',
+                'satuan' => 'Botol',
+                'harga_beli' => 3000,
+                'harga_jual' => 5000,
+                'stok' => 8,
+                'stok_minimum' => 10,
+                'tanggal_kadaluarsa' => Carbon::now()->addMonths(8),
+                'supplier' => 'PT Deltomed',
+                'deskripsi' => 'Obat herbal untuk masuk angin.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050008',
+                'nama_obat' => 'Komix Herbal Sachet',
+                'kategori' => 'Tablet',
+                'jenis' => 'Obat Herbal',
+                'satuan' => 'Strip',
+                'harga_beli' => 2500,
+                'harga_jual' => 4000,
+                'stok' => 250,
+                'stok_minimum' => 50,
+                'tanggal_kadaluarsa' => Carbon::now()->addYear(),
+                'supplier' => 'PT Unilab',
+                'deskripsi' => 'Obat herbal untuk flu dan batuk.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050009',
+                'nama_obat' => 'Ibuprofen 400mg',
+                'kategori' => 'Tablet',
+                'jenis' => 'Obat Keras',
+                'satuan' => 'Tablet',
+                'harga_beli' => 800,
+                'harga_jual' => 1500,
+                'stok' => 350,
+                'stok_minimum' => 70,
+                'tanggal_kadaluarsa' => Carbon::now()->addYears(2),
+                'supplier' => 'PT Tempo Scan Pacific',
+                'deskripsi' => 'Obat anti-inflamasi dan pereda nyeri.',
+                'status' => 'aktif',
+            ],
+            [
+                'kode_obat' => 'OBT202501050010',
+                'nama_obat' => 'Mylanta Tablet',
+                'kategori' => 'Tablet',
+                'jenis' => 'Obat Bebas',
+                'satuan' => 'Tablet',
+                'harga_beli' => 600,
+                'harga_jual' => 1000,
+                'stok' => 180,
+                'stok_minimum' => 40,
+                'tanggal_kadaluarsa' => Carbon::now()->addMonths(18),
+                'supplier' => 'PT Johnson & Johnson',
+                'deskripsi' => 'Obat maag dan gangguan pencernaan.',
+                'status' => 'aktif',
+            ],
+        ];
+
+        foreach ($obatData as $data) {
+            Obat::create($data);
+        }
+    }
+}

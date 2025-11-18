@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Obat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -9,22 +10,21 @@ class DashboardController extends Controller
 {
     // Dashboard utama (redirect ke dashboard sesuai role)
     public function index()
-{
-    $role = Auth::user()->role;
+    {
+        $role = Auth::user()->role;
 
-    switch ($role) {
-        case 'pelanggan':
-            return view('dashboard.pelanggan');
-        case 'karyawan':
-        case 'apoteker':
-            return view('dashboard.apoteker'); // gunakan 1 view gabungan
-        case 'pemilik':
-            return view('dashboard.pemilik');
-        default:
-            abort(403);
+        switch ($role) {
+            case 'pelanggan':
+                return view('dashboard.pelanggan');
+            case 'karyawan':
+            case 'apoteker':
+                return view('dashboard.apoteker'); // gunakan 1 view gabungan
+            case 'pemilik':
+                return view('dashboard.pemilik');
+            default:
+                abort(403);
+        }
     }
-}
-
 
     // === PELANGGAN ROUTES ===
     public function produkPelanggan()
@@ -34,21 +34,21 @@ class DashboardController extends Controller
 
     public function cekStok()
     {
-        $obat = \App\Models\Obat::all();
+        $obat = Obat::all();
         return view('pelanggan.cek-stok', compact('obat'));
     }
-public function pesanObat()
-{
-    $obat = \App\Models\Obat::all();
-    return view('pelanggan.pesan-obat', compact('obat'));
-}
 
-public function riwayat()
-{
-    // $pesanan = Pesanan::where('user_id', auth()->id())->get();
-    return view('pelanggan.riwayat');
-}
-   
+    public function pesanObat()
+    {
+        $obat = Obat::all();
+        return view('pelanggan.pesan-obat', compact('obat'));
+    }
+
+    public function riwayat()
+    {
+        return view('pelanggan.riwayat');
+    }
+
     public function pesanan()
     {
         return view('pelanggan.pesanan');
@@ -62,7 +62,7 @@ public function riwayat()
     // === PEMILIK ROUTES ===
     public function stokObat()
     {
-        $obat = \App\Models\Obat::all();
+        $obat = Obat::all();
         return view('pemilik.stok-obat', compact('obat'));
     }
 
@@ -81,11 +81,11 @@ public function riwayat()
         return view('pemilik.pengaturan');
     }
 
-    // === KARYAWAN ROUTES ===
+    // === KARYAWAN / APOTEKER ROUTES ===
     public function karyawanKelolaObat()
     {
-        $obat = \App\Models\Obat::all();
-        return view('karyawan.kelola-obat', compact('obat'));
+        $obats = Obat::paginate(10); // ambil data dengan pagination
+        return view('dashboard.kelolaobat', compact('obats')); // pastikan file view ini ADA
     }
 
     public function transaksi()
