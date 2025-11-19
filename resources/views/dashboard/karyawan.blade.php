@@ -408,7 +408,7 @@
                 <div class="menu-card-icon">
                     <i class="fas fa-cash-register"></i>
                 </div>
-                <div class="menu-card-title">Buat Transaksi Baru</div>
+                <div class="menu-card-title">Kelola Penjualan</div>
             </a>
 
             <a href="{{ route('karyawan.pesanan-masuk') }}" class="menu-card blue">
