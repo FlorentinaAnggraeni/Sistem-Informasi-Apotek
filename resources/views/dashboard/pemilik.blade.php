@@ -39,7 +39,7 @@
 <div class="row">
     <!-- Stat Card 1 -->
     <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
             <div class="icon">
                 <i class="fas fa-dollar-sign"></i>
             </div>

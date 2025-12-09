@@ -51,7 +51,7 @@
 <div class="row">
     <!-- Stat Card 1 -->
     <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
             <div class="icon">
                 <i class="fas fa-capsules"></i>
             </div>
@@ -101,7 +101,7 @@
             <h4 class="fw-bold mb-4"><i class="fas fa-bolt text-warning"></i> Aksi Cepat</h4>
             <div class="row">
                 <div class="col-md-3 col-sm-6 mb-3">
-                    <a href="{{ route('pelanggan.produk') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <a href="{{ route('pelanggan.produk') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
                         <i class="fas fa-shopping-bag d-block mb-2" style="font-size: 2rem;"></i>
                         Belanja Sekarang
                     </a>
@@ -163,7 +163,7 @@
         <div class="card-dashboard">
             <h5 class="fw-bold mb-3"><i class="fas fa-info-circle text-info"></i> Informasi Penting</h5>
             <div class="alert alert-info mb-2">
-                <i class="fas fa-shipping-fast"></i> <strong>Pengiriman Gratis</strong> untuk pembelian di atas Rp 100.000
+                <i class="fas fa-shipping-fast"></i> <strong>Pengiriman Gratis</strong> untuk pembelian di atas Rp 50.000
             </div>
             <div class="alert alert-success mb-2">
                 <i class="fas fa-certificate"></i> <strong>Produk Original</strong> dan terjamin kualitasnya

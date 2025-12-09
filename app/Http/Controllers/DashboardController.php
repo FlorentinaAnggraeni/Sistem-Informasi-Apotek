@@ -80,7 +80,7 @@ class DashboardController extends Controller
                 ));
             case 'karyawan':
                 // Ambil data untuk dashboard karyawan
-                $pesananBaru = Pesanan::where('status_pembayaran', 'pending')->count();
+                $pesananBaru = Pesanan::where('status_pengiriman', 'pending')->count();
                 $sedangDiproses = Pesanan::where('status_pengiriman', 'shipped')->count();
                 $selesaiHariIni = Pesanan::where('status_pengiriman', 'delivered')
                     ->whereDate('updated_at', Carbon::today())

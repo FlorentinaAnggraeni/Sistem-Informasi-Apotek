@@ -274,7 +274,7 @@ class PesananController extends Controller
     public function payment(Pesanan $pesanan)
     {
         $pesanan->load(['pelanggan', 'detailPesanans.obat']);
-        $paymentInstructions = $this->paymentService->getPaymentInstructions($pesanan->metode_pembayaran);
+        $paymentInstructions = $this->paymentService->getPaymentInstructions($pesanan->metode_pembayaran, $pesanan);
         
         return view('pelanggan.payment', compact('pesanan', 'paymentInstructions'));
     }

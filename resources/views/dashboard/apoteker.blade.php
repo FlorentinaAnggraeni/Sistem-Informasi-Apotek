@@ -51,7 +51,7 @@
 <div class="row">
     <!-- Stat Card 1 -->
     <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="card-dashboard stat-card" style="background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
             <div class="icon">
                 <i class="fas fa-capsules"></i>
             </div>
@@ -101,7 +101,7 @@
             <h4 class="fw-bold mb-4"><i class="fas fa-bolt text-warning"></i> Aksi Cepat</h4>
             <div class="row">
                 <div class="col-md-3 mb-3">
-                    <a href="{{ route('apoteker.obat.create') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <a href="{{ route('apoteker.obat.create') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
                         <i class="fas fa-plus-circle d-block mb-2" style="font-size: 2rem;"></i>
                         Tambah Obat
                     </a>

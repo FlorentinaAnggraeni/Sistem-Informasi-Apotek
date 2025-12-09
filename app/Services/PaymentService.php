@@ -59,38 +59,45 @@ class PaymentService
      */
     public function processQRIS(Pesanan $pesanan)
     {
-        // Generate QR Code string (simulasi)
-        $qrString = '00020101021226' . str_pad($pesanan->id_pesanan, 20, '0', STR_PAD_LEFT);
+        // Generate EMV QRIS string (simulasi)
+        // Format: 00020101021226... (POI Method for QRIS)
+        $merchantId = '00000000000001'; // Simulasi Merchant ID
+        $merchantName = 'APOTEK'; // Nama merchant
+        $amount = $pesanan->total_nota;
         
-        // Simulasi: 85% pembayaran berhasil
-        $isSuccess = rand(1, 100) <= 85;
+        // Generate QRIS EMV Code (simplified format)
+        $qrString = '00020101021226' . 
+                   $merchantId . 
+                   str_pad($pesanan->id_pesanan, 10, '0', STR_PAD_LEFT) .
+                   str_pad((int)$amount, 15, '0', STR_PAD_LEFT);
+        
+        $pesanan->update([
+            'metode_pembayaran' => 'qris',
+            'status_pembayaran' => 'pending',
+            'qr_code' => $qrString,
+        ]);
 
-        if ($isSuccess) {
-            $pesanan->update([
-                'metode_pembayaran' => 'qris',
-                'status_pembayaran' => 'paid',
-                'qr_code' => $qrString,
-            ]);
+        return [
+            'success' => true,
+            'message' => 'Silakan scan QR Code QRIS menggunakan aplikasi pembayaran Anda.',
+            'payment_method' => 'qris',
+            'qr_code' => $qrString,
+            'qr_image' => $this->generateQRImage($qrString),
+            'amount' => $pesanan->total_nota,
+        ];
+    }
 
-            return [
-                'success' => true,
-                'message' => 'Pembayaran berhasil melalui QRIS',
-                'payment_method' => 'qris',
-                'qr_code' => $qrString,
-                'amount' => $pesanan->total_nota,
-            ];
-        } else {
-            $pesanan->update([
-                'metode_pembayaran' => 'qris',
-                'status_pembayaran' => 'failed',
-            ]);
-
-            return [
-                'success' => false,
-                'message' => 'Pembayaran QRIS gagal. Silakan coba lagi.',
-                'payment_method' => 'qris',
-            ];
-        }
+    /**
+     * Generate QR Code Image dari string QRIS
+     */
+    private function generateQRImage($data)
+    {
+        // Menggunakan API pihak ketiga untuk generate QR code
+        // Menggunakan service qr-server.com (gratis dan tidak perlu library)
+        $encoded = urlencode($data);
+        $qrImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$encoded}";
+        
+        return $qrImageUrl;
     }
 
     /**
@@ -122,7 +129,7 @@ class PaymentService
     /**
      * Get payment instructions
      */
-    public function getPaymentInstructions($method)
+    public function getPaymentInstructions($method, Pesanan $pesanan = null)
     {
         $instructions = [
             'transfer' => [
@@ -161,6 +168,16 @@ class PaymentService
                 ],
             ],
         ];
+
+        // Generate QR image for QRIS if pesanan is provided
+        if ($method === 'qris' && $pesanan) {
+            $qrData = '00020101021226' . 
+                     '00000000000001' . 
+                     str_pad($pesanan->id_pesanan, 10, '0', STR_PAD_LEFT) .
+                     str_pad((int)$pesanan->total_nota, 15, '0', STR_PAD_LEFT);
+            
+            $instructions['qris']['qr_image'] = $this->generateQRImage($qrData);
+        }
 
         return $instructions[$method] ?? null;
     }

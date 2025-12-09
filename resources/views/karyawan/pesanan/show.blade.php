@@ -93,7 +93,7 @@
         </div>
 
         <!-- Bukti Pembayaran & Verifikasi -->
-        @if($pesanan->metode_pembayaran && in_array($pesanan->metode_pembayaran, ['transfer', 'e-wallet']))
+        @if($pesanan->metode_pembayaran && in_array($pesanan->metode_pembayaran, ['transfer', 'e-wallet', 'qris']))
             <div class="row mb-4">
                 <div class="col-12">
                     <h6><i class="fas fa-receipt"></i> Bukti Pembayaran</h6>
@@ -122,7 +122,7 @@
                                 <div class="col-md-6">
                                     @if($pesanan->bukti_pembayaran)
                                         <div class="text-center">
-                                            <p class="mb-2"><strong>Bukti Transfer/Screenshot:</strong></p>
+                                            <p class="mb-2"><strong>Bukti Pembayaran:</strong></p>
                                             @php
                                                 $extension = pathinfo($pesanan->bukti_pembayaran, PATHINFO_EXTENSION);
                                             @endphp

@@ -135,13 +135,13 @@
         <div class="card-dashboard mb-3">
             <h5 class="fw-bold mb-3"><i class="fas fa-cog text-success"></i> Aksi</h5>
             
-            @if($pesanan->status_pembayaran == 'unpaid')
+            @if($pesanan->status_pembayaran != 'paid' && in_array($pesanan->metode_pembayaran, ['transfer', 'e-wallet', 'qris']))
                 <a href="{{ route('pelanggan.pesanan.payment', $pesanan) }}" class="btn btn-warning w-100 mb-2">
-                    <i class="fas fa-credit-card"></i> Bayar Sekarang
+                    <i class="fas fa-credit-card"></i> Bayar/Upload Bukti
                 </a>
             @endif
 
-            @if($pesanan->status_pesanan == 'shipped')
+            @if($pesanan->status_pengiriman == 'shipped')
                 <form action="{{ route('pelanggan.pesanan.konfirmasi', $pesanan) }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-success w-100 mb-2" onclick="return confirm('Konfirmasi bahwa pesanan telah diterima?')">

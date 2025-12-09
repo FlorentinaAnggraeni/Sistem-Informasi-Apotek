@@ -7,10 +7,11 @@
     <title>@yield('title', 'Pelanggan - Apotek')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('styles')
     <style>
         .navbar-custom {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%);
         }
         .sidebar {
             min-height: calc(100vh - 56px);
@@ -26,7 +27,7 @@
         }
         .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%);
             color: white;
         }
         .content-wrapper {
@@ -80,9 +81,9 @@
                             <li><a class="dropdown-item" href="{{ route('pelanggan.profil') }}"><i class="fas fa-user"></i> Profil</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form action="{{ route('logout') }}" method="POST">
+                                <form id="logoutFormPelanggan" action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                    <button type="button" class="dropdown-item" onclick="confirmLogoutPelanggan()"><i class="fas fa-sign-out-alt"></i> Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -151,6 +152,25 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function confirmLogoutPelanggan() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Keluar?',
+                text: 'Apakah Anda yakin ingin logout?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#ff4444',
+                cancelButtonColor: '#00bcd4',
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logoutFormPelanggan').submit();
+                }
+            });
+        }
+    </script>
     @stack('scripts')
 </body>
 </html>

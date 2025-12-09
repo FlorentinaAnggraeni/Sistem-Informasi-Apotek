@@ -221,6 +221,102 @@
                             <i class="fas fa-check-circle"></i> Pembayaran Anda telah diverifikasi dan dikonfirmasi.
                         </div>
                     @endif
+
+                @elseif($pesanan->metode_pembayaran == 'qris')
+                    <!-- QRIS Payment -->
+                    <div class="card border-info mb-3">
+                        <div class="card-body">
+                            <h5 class="mb-4 text-center"><i class="fas fa-qrcode text-info"></i> Pembayaran QRIS</h5>
+                            
+                            <div class="alert alert-info mb-3">
+                                <i class="fas fa-info-circle"></i> 
+                                <strong>Scan QR Code di bawah menggunakan aplikasi e-wallet atau mobile banking Anda</strong>
+                            </div>
+
+                            <div class="text-center mb-4">
+                                @if(isset($paymentInstructions['qr_image']))
+                                    <img src="{{ $paymentInstructions['qr_image'] }}" alt="QRIS QR Code" class="img-fluid" style="max-width: 300px; border: 2px solid #00bcd4; border-radius: 10px; padding: 10px;">
+                                @else
+                                    <div class="qr-code-placeholder bg-light p-4 mx-auto" style="max-width: 300px; border: 2px dashed #dee2e6; border-radius: 10px;">
+                                        <i class="fas fa-qrcode text-secondary" style="font-size: 80px;"></i>
+                                        <p class="text-muted mt-2">QR Code QRIS</p>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="alert alert-warning text-center">
+                                <i class="fas fa-money-bill"></i> 
+                                <strong>Total yang harus dibayar:</strong> 
+                                <h4 class="mt-2 mb-0 text-dark">Rp {{ number_format($pesanan->total_nota, 0, ',', '.') }}</h4>
+                            </div>
+
+                            <div class="card bg-light border-0">
+                                <div class="card-body text-center">
+                                    <p class="mb-1"><small class="text-muted">Merchant ID (MID)</small></p>
+                                    <p class="font-monospace mb-0">{{ substr($pesanan->id_pesanan, 0, 16) ?? 'APOTEK2024' }}</p>
+                                </div>
+                            </div>
+
+                            @if($pesanan->status_pembayaran != 'paid')
+                                <div class="mt-3">
+                                    <p class="text-muted small mb-2"><i class="fas fa-check"></i> Pembayaran QRIS bersifat real-time</p>
+                                    <p class="text-muted small mb-2"><i class="fas fa-check"></i> Notifikasi pembayaran akan dikirim otomatis</p>
+                                    <p class="text-muted small"><i class="fas fa-check"></i> Jangan tutup halaman ini sampai pembayaran selesai</p>
+                                </div>
+                            @else
+                                <div class="alert alert-success mt-3">
+                                    <i class="fas fa-check-circle"></i> Pembayaran Anda telah diverifikasi dan dikonfirmasi.
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Upload Bukti QRIS -->
+                    @if($pesanan->status_pembayaran != 'paid')
+                        <div class="card border-primary mt-3">
+                            <div class="card-body">
+                                <h6 class="mb-3"><i class="fas fa-upload text-primary"></i> Upload Bukti Pembayaran QRIS</h6>
+                                <p class="text-muted small">Upload screenshot bukti transaksi QRIS Anda dari aplikasi mobile banking atau e-wallet.</p>
+                                
+                                @if($pesanan->bukti_pembayaran)
+                                    <div class="alert alert-success mb-3">
+                                        <i class="fas fa-check-circle"></i> Bukti pembayaran sudah diupload. Menunggu verifikasi admin.
+                                        <div class="mt-2">
+                                            @php
+                                                $extension = pathinfo($pesanan->bukti_pembayaran, PATHINFO_EXTENSION);
+                                            @endphp
+                                            @if(in_array($extension, ['jpg', 'jpeg', 'png']))
+                                                <img src="{{ asset('storage/' . $pesanan->bukti_pembayaran) }}" class="img-thumbnail" style="max-height: 200px;">
+                                            @elseif($extension == 'pdf')
+                                                <a href="{{ asset('storage/' . $pesanan->bukti_pembayaran) }}" target="_blank" class="btn btn-sm btn-primary">
+                                                    <i class="fas fa-file-pdf"></i> Lihat PDF
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <form action="{{ route('pelanggan.pesanan.upload-bukti', $pesanan) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="form-label">Screenshot Bukti Pembayaran QRIS <span class="text-danger">*</span></label>
+                                        <input type="file" name="bukti_pembayaran" class="form-control" accept="image/*" required>
+                                        <small class="text-muted">Format: JPG, PNG (Max: 2MB)</small>
+                                        @error('bukti_pembayaran')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-upload"></i> {{ $pesanan->bukti_pembayaran ? 'Upload Ulang' : 'Upload Bukti' }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <div class="alert alert-success mt-3">
+                            <i class="fas fa-check-circle"></i> Pembayaran Anda telah diverifikasi dan dikonfirmasi.
+                        </div>
+                    @endif
                 @endif
 
                 <!-- Payment Instructions -->

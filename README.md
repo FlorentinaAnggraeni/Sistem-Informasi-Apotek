@@ -28,7 +28,7 @@ Sistem Informasi Apotek adalah aplikasi web berbasis Laravel untuk mengelola ope
 - **Pembelian Langsung**: Pelanggan dapat membeli obat bebas tanpa resep
 - **Pembelian dengan Resep**: Upload foto resep dokter untuk obat yang memerlukan resep
 - Keranjang belanja
-- Multiple payment methods (Transfer Bank, E-Wallet, COD)
+- Multiple payment methods (Transfer Bank, E-Wallet, QRIS)
 - Upload bukti pembayaran
 - Tracking status pesanan
 
@@ -38,7 +38,7 @@ Sistem Informasi Apotek adalah aplikasi web berbasis Laravel untuk mengelola ope
 - Proses resep (pilih obat, tentukan jumlah)
 - Catatan apoteker untuk pelanggan
 - Status tracking (Pending → Diproses → Selesai/Ditolak)
-
+ 
 ### 🔹 Transaksi & Laporan
 - Verifikasi pembayaran
 - Konfirmasi pengiriman

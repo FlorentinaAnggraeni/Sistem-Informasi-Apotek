@@ -46,7 +46,7 @@
 <!-- Summary Cards -->
 <div class="row mb-4">
     <div class="col-md-3">
-        <div class="card-dashboard" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="card-dashboard" style="background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
             <div class="icon" style="font-size: 2rem; opacity: 0.3;">
                 <i class="fas fa-boxes"></i>
             </div>

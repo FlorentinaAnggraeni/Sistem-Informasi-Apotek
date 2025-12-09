@@ -127,7 +127,7 @@
                 @php
                     $totalItems = $keranjangs->sum('jumlah');
                     $subtotal = $keranjangs->sum('subtotal');
-                    $ongkir = $subtotal >= 100000 ? 0 : 10000;
+                    $ongkir = $subtotal >= 50000 ? 0 : 10000;
                     $total = $subtotal + $ongkir;
                 @endphp
 
@@ -153,9 +153,13 @@
                     </div>
                 </div>
 
-                @if($subtotal < 100000)
+                @if($subtotal < 50000)
                     <div class="alert alert-info small mb-3">
-                        <i class="fas fa-info-circle"></i> Belanja Rp {{ number_format(100000 - $subtotal, 0, ',', '.') }} lagi untuk gratis ongkir!
+                        <i class="fas fa-info-circle"></i> Belanja Rp {{ number_format(50000 - $subtotal, 0, ',', '.') }} lagi untuk gratis ongkir!
+                    </div>
+                @else
+                    <div class="alert alert-success small mb-3">
+                        <i class="fas fa-check-circle"></i> Anda mendapat pengiriman gratis!
                     </div>
                 @endif
 

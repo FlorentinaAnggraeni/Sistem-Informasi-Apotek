@@ -76,7 +76,7 @@
 <!-- Summary Cards -->
 <div class="row mb-4">
     <div class="col-md-3">
-        <div class="card-dashboard" style="border-left: 4px solid #667eea;">
+        <div class="card-dashboard" style="border-left: 4px solid #00bcd4;">
             <small class="text-muted">Total Penjualan</small>
             <h3 class="fw-bold text-primary mb-0">{{ $pesanans->count() }}</h3>
             <small class="text-success"><i class="fas fa-arrow-up"></i> Transaksi</small>

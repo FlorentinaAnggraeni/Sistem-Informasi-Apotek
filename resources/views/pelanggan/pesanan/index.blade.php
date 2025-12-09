@@ -110,9 +110,9 @@
                                     <a href="{{ route('pelanggan.pesanan.show', $pesanan) }}" class="btn btn-sm btn-info">
                                         <i class="fas fa-eye"></i> Detail
                                     </a>
-                                    @if($pesanan->status_pembayaran != 'paid' && in_array($pesanan->metode_pembayaran, ['transfer', 'e-wallet']))
+                                    @if($pesanan->status_pembayaran != 'paid' && in_array($pesanan->metode_pembayaran, ['transfer', 'e-wallet', 'qris']))
                                         <a href="{{ route('pelanggan.pesanan.payment', $pesanan) }}" class="btn btn-sm btn-warning">
-                                            <i class="fas fa-credit-card"></i> Bayar
+                                            <i class="fas fa-credit-card"></i> Bayar/Upload
                                         </a>
                                     @endif
                                     @if($pesanan->status_pengiriman == 'shipped' && $pesanan->status_penerimaan != 'diterima')

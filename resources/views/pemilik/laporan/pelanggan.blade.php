@@ -46,7 +46,7 @@
 <!-- Summary Cards -->
 <div class="row mb-4">
     <div class="col-md-4">
-        <div class="card-dashboard" style="border-left: 4px solid #667eea;">
+        <div class="card-dashboard" style="border-left: 4px solid #00bcd4;">
             <small class="text-muted">Total Pelanggan</small>
             <h3 class="fw-bold text-primary mb-0">{{ \App\Models\Pelanggan::count() }}</h3>
             <small class="text-muted">Terdaftar</small>

@@ -7,6 +7,7 @@
     <title>@yield('title', 'Dashboard')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- Kill Bootstrap Pagination SVG -->
     <style>
@@ -23,8 +24,8 @@
     <style>
         :root {
             --sidebar-width: 260px;
-            --primary-color: #00a8cc;
-            --secondary-color: #ff8800;
+            --primary-color: #00bcd4;
+            --secondary-color: #00838f;
         }
         
         body {
@@ -37,7 +38,7 @@
             left: 0;
             height: 100vh;
             width: var(--sidebar-width);
-            background: linear-gradient(180deg, #00d4ff 0%, #00a8cc 100%);
+            background: linear-gradient(180deg, #00bcd4 0%, #00838f 100%);
             padding: 20px 0;
             box-shadow: 4px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
@@ -144,7 +145,7 @@
         }
         
         .btn-logout {
-            background: linear-gradient(135deg, #ff9933 0%, #ff8800 100%);
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%);
             color: white;
             border: none;
             padding: 8px 20px;
@@ -324,9 +325,9 @@
             </div>
             <div class="d-flex align-items-center gap-3">
                 <span class="text-muted">{{ auth()->user()->email }}</span>
-                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="d-inline">
                     @csrf
-                    <button type="submit" class="btn btn-logout">
+                    <button type="button" class="btn btn-logout" onclick="confirmLogout()">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </button>
                 </form>
@@ -371,6 +372,25 @@
                 }
             }
         });
+
+        // Logout confirmation dialog
+        function confirmLogout() {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Keluar?',
+                text: 'Apakah Anda yakin ingin logout?',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Logout',
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#ff4444',
+                cancelButtonColor: '#00bcd4',
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logoutForm').submit();
+                }
+            });
+        }
     </script>
     @stack('scripts')
 </body>

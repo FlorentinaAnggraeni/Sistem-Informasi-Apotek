@@ -8,12 +8,13 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('styles')
 
     <style>
         .sidebar {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%);
         }
         .sidebar .nav-link {
             color: rgba(255,255,255,0.8);
@@ -86,9 +87,9 @@
                     <i class="fas fa-pills"></i> Obat
                 </a>
                 <hr class="text-white">
-                <form action="{{ route('logout') }}" method="POST">
+                <form id="logoutFormKaryawan" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
+                    <button type="button" class="nav-link border-0 bg-transparent w-100 text-start" onclick="confirmLogoutKaryawan()">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </button>
                 </form>
@@ -135,6 +136,25 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function confirmLogoutKaryawan() {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Keluar?',
+            text: 'Apakah Anda yakin ingin logout?',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#ff4444',
+            cancelButtonColor: '#007bff',
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logoutFormKaryawan').submit();
+            }
+        });
+    }
+</script>
 @stack('scripts')
 </body>
 </html>
